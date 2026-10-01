@@ -1,7 +1,7 @@
 # sawzan-site について
 
 株式会社SAWZAN(2026-09-30時点、法人登記に向けて準備中)が運営する
-koinryu-app「えにしる」向けの静的サイトリポジトリ。
+アプリ(現在は enishiru-app「えにしる」)向けの静的サイトリポジトリ。
 
 ## 公開先
 
@@ -12,10 +12,18 @@ koinryu-app「えにしる」向けの静的サイトリポジトリ。
   - `ssh://ds218j/var/services/homes/zeronos/git-repos/sawzan-site.git`
   - second-brainと同じ運用(pull→commit→push、衝突は自動解決せずユーザー判断)
 
-## 現在のページ構成
+## ページ構成(アプリごとにフォルダを掘る、2026-10-01)
 
-- `privacy.html` — プライバシーポリシー(App Store/Google Play審査用)
-- `terms.html` — 利用規約
+アプリごとに内容が違う(プライバシーポリシーなど)ため、アプリ名のフォルダに置く。
+**新しいアプリを作るときは、同じ形のフォルダを足す**(他のアプリのURLに影響しない)。
+
+- `index.html` — 会社の入口(SAWZANのみ。アプリ一覧は載せない)
+- `enishiru/index.html` — えにしるの案内(ポリシーへのリンク、問い合わせ先)
+- `enishiru/privacy.html` — えにしるのプライバシーポリシー(App Store/Google Play審査用)
+- `enishiru/terms.html` — えにしるの利用規約
+- `privacy.html` / `terms.html`(直下) — 旧URLからの転送ページ(中身は上の2つへの自動転送。消さない)
+
+ストアに登録するURLは `https://sawzan.com/enishiru/privacy.html` を使う。
 
 ## 運営者名義について【重要】
 

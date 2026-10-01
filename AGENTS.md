@@ -12,6 +12,18 @@
   - `ssh://ds218j/var/services/homes/zeronos/git-repos/sawzan-site.git`
   - second-brainと同じ運用(pull→commit→push、衝突は自動解決せずユーザー判断)
 
+## HTTPS・Cloudflareの構成(2026-10-01)
+
+- DNSはCloudflare(DNSレコード5本=Aレコード4本+www CNAMEは**プロキシ有効**)。
+  GitHub Pagesの「Enforce HTTPS」も有効。
+- Cloudflare側: SSL/TLSは**Full (strict)**、「常にHTTPSを使用」オン、
+  **HSTS有効(max-age 6か月=15552000秒、サブドメイン適用・プリロードはオフ)**、No-Sniffオン。
+- メール転送(support@sawzan.com)のMX/TXTレコードはプロキシ対象外(触らない)。
+- **Cloudflareをやめる/プロキシを外す場合の注意**: HSTSがブラウザに最大6か月キャッシュされる。
+  先にHSTSを無効にし、max-ageの期間が過ぎるのを待ってから、プロキシ/HTTPSを外すこと
+  (順序を誤ると、訪問者がサイトに入れなくなる)。
+- SSL/TLSモードをFlexibleにしない(GitHubのHTTPS強制と衝突して無限リダイレクトになる)。
+
 ## ページ構成(アプリごとにフォルダを掘る、2026-10-01)
 
 アプリごとに内容が違う(プライバシーポリシーなど)ため、アプリ名のフォルダに置く。

@@ -60,6 +60,15 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 `/Volumes/workspace/Projects/app-company-hq/company/tokushoho_handoff_2026-10-03.md` を読むこと。
 ユーザーの承認なしに、住所・氏名・電話番号を公開ページに載せない。
 
+## 検索からの保護(2026-10-03、ユーザー指示「効くことは全部やる」)
+
+- `enishiru/` 配下のページには `<meta name="robots" content="noindex, noarchive">` を入れた(検索結果に出さない・キャッシュを残さない)。
+- **個人の氏名・住所・電話番号を載せるページ(特商法ページなど)は、必ず `noindex, noarchive, nosnippet` を付けて公開する**。
+  `robots.txt` で Disallow しない(検索エンジンが noindex を読めなくなり、URLだけ残ることがある)。
+- 限界: noindex は検索エンジンに効くだけで、URLを知る人・収集ツール・ウェブアーカイブ・過去の保存には効かない。法人の代表取締役の氏名は登記簿(公開情報)に載る。
+- `index.html`(会社の入口)と `koukoku/`(電子公告)には指定を入れていない。
+- 任意: Cloudflareの Transform Rules(Modify Response Header)で、特商法ページに `X-Robots-Tag: noindex, noarchive, nosnippet` を付けると二重になる(ダッシュボード作業。未実施)。
+
 ## 今後の拡張候補(ユーザー発言、未着手)
 
 - IR情報ページ(法人化後、投資家向け情報を掲載する構想)

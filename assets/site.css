@@ -55,6 +55,14 @@ footer a:hover { text-decoration: underline; }
 .doc table { border-collapse: collapse; width: 100%; margin: 1em 0; }
 .doc th, .doc td { border: 1px solid var(--rule); padding: 8px 12px; text-align: left; font-size: 0.92rem; }
 .doc th { background: var(--surface); }
+.doc .crumb { margin: 0 0 10px; font-size: 0.85rem; letter-spacing: 0.08em; }
+.doc .crumb a { color: var(--muted); text-decoration: none; }
+.doc .crumb a:hover { text-decoration: underline; }
+.doc ul.links { list-style: none; margin: 1.4em 0; padding: 0; border-top: 1px solid var(--rule); }
+.doc ul.links li { border-bottom: 1px solid var(--rule); }
+.doc ul.links a { display: block; padding: 14px 4px; text-decoration: none; }
+.doc ul.links a::after { content: " →"; color: var(--muted); }
+.doc ul.links a:hover { color: var(--brand); }
 .doc .wrap { max-width: 760px; padding: 0 20px; }
 
 @media (max-width: 640px) {

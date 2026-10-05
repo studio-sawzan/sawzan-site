@@ -60,14 +60,14 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 `/Volumes/workspace/Projects/app-company-hq/company/tokushoho_handoff_2026-10-03.md` を読むこと。
 ユーザーの承認なしに、住所・氏名・電話番号を公開ページに載せない。
 
-## 検索からの保護(2026-10-03、ユーザー指示「効くことは全部やる」)
+## 検索からの保護(2026-10-05改訂、ユーザー指示「一般の企業と同じがよい。ただし自分の名前が検索されるのは嫌」)
 
-- `enishiru/` 配下のページには `<meta name="robots" content="noindex, noarchive">` を入れた(検索結果に出さない・キャッシュを残さない)。
-- **個人の氏名・住所・電話番号を載せるページ(特商法ページなど)は、必ず `noindex, noarchive, nosnippet` を付けて公開する**。
-  `robots.txt` で Disallow しない(検索エンジンが noindex を読めなくなり、URLだけ残ることがある)。
-- 限界: noindex は検索エンジンに効くだけで、URLを知る人・収集ツール・ウェブアーカイブ・過去の保存には効かない。法人の代表取締役の氏名は登記簿(公開情報)に載る。
-- `index.html`(会社の入口)と `koukoku/`(電子公告)には指定を入れていない。
-- 任意: Cloudflareの Transform Rules(Modify Response Header)で、特商法ページに `X-Robots-Tag: noindex, noarchive, nosnippet` を付けると二重になる(ダッシュボード作業。未実施)。
+- 通常のページ(トップ、規約、ポリシー、案内、`koukoku/`)は、一般の企業と同じく、検索に出るままにする。`noindex` は付けない。
+- **個人の氏名・住所・電話番号を載せるページ(特商法ページなど)だけ**、`<meta name="robots" content="noindex, noarchive, nosnippet">` を付けて公開する。実名は、そのページ以外に書かない。
+- `robots.txt` で Disallow しない(検索エンジンが noindex を読めなくなり、URLだけ残ることがある)。noindex はロボットに読まれる前提で、「検索結果に出さない」指示。
+- 限界: noindex は検索エンジンに効くだけで、URLを知る人・収集ツール・ウェブアーカイブ・過去の保存には効かない。法人の代表取締役の氏名は登記簿(公開情報)に載る。ストアの販売元表示にも出る。
+- Googleの「自分に関する検索結果」から、連絡先情報(住所・電話・メール)の削除を依頼できる(氏名や公的情報には効かない見込み、要確認)。
+- Cloudflareの Transform Rules(X-Robots-Tag)は、検討したが、作っていない(2026-10-05に撤回)。
 
 ## 今後の拡張候補(ユーザー発言、未着手)
 

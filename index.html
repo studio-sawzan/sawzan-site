@@ -113,14 +113,15 @@
   .hero .lead { margin: 30px 0 0; max-width: 31em; color: var(--muted); font-size: 1.02rem; }
   .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36px; z-index: 3; background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none; }
   .ridges { display: block; width: 100%; height: auto; margin-top: -6vw; position: relative; z-index: 1; }
-  .cut-poly { transform-box: fill-box; transform-origin: 50% 0%; }
-  .cut-edge { stroke: url(#edge-g); stroke-width: 2; fill: none; }
+  .cut-edge { stroke: var(--glow); stroke-width: 2.2; fill: none; }
   @media (prefers-reduced-motion: no-preference) {
-    .cut-poly { animation: cut 2.4s cubic-bezier(.65,.05,.2,1) .35s both; }
-    .cut-edge { animation: edge 2.4s cubic-bezier(.65,.05,.2,1) .35s both; stroke-dasharray: 600; }
-    @keyframes cut { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-    @keyframes edge { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
+    .slide { animation: slide 1.7s cubic-bezier(.22,.9,.2,1) .6s both; }
+    .gap { animation: gapin 1.7s ease-out .6s both; }
+    @keyframes slide { from { transform: translate(0, 0); } to { transform: translate(44px, 76px); } }
+    @keyframes gapin { from { opacity: 0; } to { opacity: 1; } }
   }
+  .slide { transform: translate(44px, 76px); }
+  @media (prefers-reduced-motion: no-preference) { .slide { transform: none; } }
 
   /* ---- 共通セクション ---- */
   main section.wrap { padding-top: 112px; padding-bottom: 0; scroll-margin-top: 60px; }
@@ -218,36 +219,29 @@
       <p class="lead">創造力だけでは、動かせない山がある。それでも、つくりたい。いまは、ひとりの力を最大限に引き出す手立てがある。それらを味方に、SAWZAN(ソウザン)は、山を切り開いていきます。</p>
     </div>
   </div>
-  <svg class="ridges" viewBox="0 -90 1440 490" preserveAspectRatio="none" role="img" aria-label="立ちはだかる山を切り開いた、一本の切り通しから光がこぼれるイラスト">
+  <svg class="ridges" viewBox="0 0 1440 440" preserveAspectRatio="none" role="img" aria-label="一つの大きな山が、斜めに一刀両断され、切断面の隙間から光がこぼれるイラスト">
     <defs>
-      <linearGradient id="edge-g" gradientUnits="userSpaceOnUse" x1="0" y1="-90" x2="0" y2="400">
-        <stop offset="0" stop-color="var(--glow)" stop-opacity="0"/>
-        <stop offset="0.5" stop-color="var(--glow)" stop-opacity="0.9"/>
+      <linearGradient id="gap-g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="var(--glow)" stop-opacity="0.55"/>
+        <stop offset="0.5" stop-color="var(--glow)" stop-opacity="0.95"/>
         <stop offset="1" stop-color="var(--glow)" stop-opacity="1"/>
       </linearGradient>
-      <linearGradient id="glow-g" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0.15" stop-color="var(--glow)" stop-opacity="0.55"/>
-        <stop offset="0.35" stop-color="var(--glow)" stop-opacity="0.8"/>
-        <stop offset="0.7" stop-color="var(--glow)" stop-opacity="1"/>
-        <stop offset="1" stop-color="var(--glow)" stop-opacity="1"/>
-      </linearGradient>
-      <clipPath id="mtn"><path d="M-40 230 L130 70 L290 180 L470 20 L650 190 L830 50 L1010 200 L1210 30 L1480 220 L1480 420 L-40 420 Z"/></clipPath>
-      <mask id="cut" maskUnits="userSpaceOnUse" x="0" y="-90" width="1440" height="490">
-        <rect x="0" y="-90" width="1440" height="490" fill="#fff"/>
-        <polygon class="cut-poly" points="1196,-90 1262,-90 1118,400 1040,400" fill="#000"/>
-      </mask>
     </defs>
-    <g clip-path="url(#mtn)"><polygon points="1196,-90 1262,-90 1118,400 1040,400" fill="url(#glow-g)"/></g>
-    <g mask="url(#cut)">
-      <path d="M-40 230 L130 70 L290 180 L470 20 L650 190 L830 50 L1010 200 L1210 30 L1480 220 L1480 420 L-40 420 Z" fill="var(--ridge-1)"/>
-      <path d="M-40 280 L110 160 L290 250 L470 110 L650 260 L860 130 L1050 260 L1260 120 L1480 270 L1480 420 L-40 420 Z" fill="var(--ridge-2)"/>
-      <path d="M-40 330 L150 230 L340 310 L560 190 L760 320 L980 220 L1190 320 L1480 230 L1480 420 L-40 420 Z" fill="var(--ridge-3)"/>
-      <path d="M-40 372 L220 320 L520 378 L820 322 L1120 380 L1480 330 L1480 420 L-40 420 Z" fill="var(--ridge-4)"/>
+    <!-- 遠い山並み -->
+    <path d="M-40 300 L120 210 L260 270 L420 190 L560 280 L1000 260 L1160 180 L1320 260 L1480 200 L1480 460 L-40 460 Z" fill="var(--ridge-1)"/>
+    <path d="M-40 350 L160 270 L330 340 L520 260 L700 350 L1040 330 L1220 250 L1480 330 L1480 460 L-40 460 Z" fill="var(--ridge-2)"/>
+    <!-- 切断面の隙間(光) -->
+    <polygon class="gap" points="779,60.6 823,136.6 724,516 680,440" fill="url(#gap-g)"/>
+    <!-- 左半分(その場に残る) -->
+    <polygon points="330,440 520,250 640,170 760,40 779,60.6 680,440" fill="var(--ridge-4)"/>
+    <!-- 右半分(切られて、ずれ落ちる) -->
+    <g class="slide">
+      <polygon points="779,60.6 880,170 960,260 1130,440 680,440" fill="var(--ridge-3)"/>
+      <path class="cut-edge" d="M779 60.6 L680 440"/>
     </g>
-    <g clip-path="url(#mtn)">
-      <path class="cut-edge" d="M1196 -90 L1040 400"/>
-      <path class="cut-edge" d="M1262 -90 L1118 400"/>
-    </g>
+    <path class="cut-edge" d="M779 60.6 L680 440"/>
+    <!-- 手前の低い山 -->
+    <path d="M-40 410 L220 360 L520 420 L820 370 L1120 424 L1480 380 L1480 460 L-40 460 Z" fill="var(--ridge-4)"/>
   </svg>
 </div>
 

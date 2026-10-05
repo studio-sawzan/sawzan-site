@@ -4,45 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>えにしる | SAWZAN</title>
-<style>
-  :root {
-    --bg: #F8F5F0;
-    --surface: #FFFDFC;
-    --text: #292725;
-    --text-muted: #726B63;
-    --border: #DED8D1;
-    --primary: #344A53;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1B1917;
-      --surface: #242220;
-      --text: #EFEAE3;
-      --text-muted: #A79E93;
-      --border: #3B3733;
-      --primary: #C9D6D3;
-    }
-  }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-    line-height: 1.8;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-  h1 { font-size: 1.6rem; border-bottom: 2px solid var(--primary); padding-bottom: 12px; }
-  h2 { font-size: 1.15rem; margin-top: 2.2em; color: var(--primary); }
-  p, li { color: var(--text); }
-  .muted { color: var(--text-muted); font-size: 0.9rem; }
-  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-  th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 0.92rem; }
-  th { background: var(--surface); }
-  a { color: var(--primary); }
-</style>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/sawzan_logo_primary.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="doc">
+<!--SITE-HEADER-->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../assets/sawzan_logo_primary.svg" alt="創山のロゴ" width="57" height="42"><span>SAWZAN</span></a>
+    <nav aria-label="メニュー">
+      <ul>
+        <li><a href="../#business">事業内容</a></li>
+        <li><a href="../#about">会社概要</a></li>
+        <li><a href="../#history">沿革</a></li>
+        <li><a href="../#contact">お問い合わせ</a></li>
+        <li><a href="../works/">作品・サービス<span aria-hidden="true"> →</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!--/SITE-HEADER-->
+
+<main>
 <h1>えにしる</h1>
 <p>四柱推命で知る、私とあなた。</p>
 <ul>
@@ -52,5 +35,15 @@
 </ul>
 <p>お問い合わせ: <a href="mailto:support@sawzan.com">support@sawzan.com</a></p>
 <p class="muted"><a href="../">SAWZAN</a></p>
+</main>
+
+<!--SITE-FOOTER-->
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 SAWZAN</span>
+    <a href="../koukoku/">電子公告</a>
+  </div>
+</footer>
+<!--/SITE-FOOTER-->
 </body>
 </html>

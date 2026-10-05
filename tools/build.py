@@ -25,6 +25,11 @@ MENU = [
 PAGES = {
     "index.html": ("", None),
     "works/index.html": ("../", "works/"),
+    "koukoku/index.html": ("../", None),
+    "enishiru/index.html": ("../", None),
+    "enishiru/privacy.html": ("../", None),
+    "enishiru/terms.html": ("../", None),
+    "enishiru/account-deletion.html": ("../", None),
 }
 
 

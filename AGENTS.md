@@ -92,3 +92,5 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 ## 共通ヘッダー・フッター
 - メニューの項目・順序とフッターは `tools/build.py` が一元管理し、`index.html` と `works/index.html` の `<!--SITE-HEADER-->`/`<!--SITE-FOOTER-->` の間へ差し込む。直接HTMLを編集せず、`MENU` を直して `python3 tools/build.py` を実行する(`--check` で最新か確認)。
 - 新しいページを足す時は、`PAGES` に追加し、マーカーを置く。
+- 共通スタイルは `assets/site.css`(色・文字・ヘッダー/フッター・文書ページ `<body class="doc">`)。ページ固有のスタイルだけを各ページの `<style>` に書く。トップの山の色(`--ridge-*` 等)は `index.html` に残している。
+- 文書ページ(`koukoku/`、`enishiru/*`)も、共通ヘッダー/フッターを使う(`tools/build.py` の `PAGES`)。

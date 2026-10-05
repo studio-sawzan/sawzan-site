@@ -6,41 +6,41 @@
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="SAWZANの電子公告掲載ページです。">
 <title>電子公告 | SAWZAN</title>
-<style>
-  :root {
-    --bg: #F8F5F0;
-    --text: #292725;
-    --text-muted: #726B63;
-    --primary: #344A53;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1B1917;
-      --text: #EFEAE3;
-      --text-muted: #A79E93;
-      --primary: #C9D6D3;
-    }
-  }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-    line-height: 1.8;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-  h1 { font-size: 1.6rem; border-bottom: 2px solid var(--primary); padding-bottom: 12px; }
-  .muted { color: var(--text-muted); font-size: 0.9rem; }
-  a { color: var(--primary); }
-</style>
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/sawzan_logo_primary.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="doc">
+<!--SITE-HEADER-->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../assets/sawzan_logo_primary.svg" alt="創山のロゴ" width="57" height="42"><span>SAWZAN</span></a>
+    <nav aria-label="メニュー">
+      <ul>
+        <li><a href="../#business">事業内容</a></li>
+        <li><a href="../#about">会社概要</a></li>
+        <li><a href="../#history">沿革</a></li>
+        <li><a href="../#contact">お問い合わせ</a></li>
+        <li><a href="../works/">作品・サービス<span aria-hidden="true"> →</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!--/SITE-HEADER-->
+
 <main>
   <h1>電子公告</h1>
   <p>SAWZANは法人設立準備中です。設立後、法令に基づく電子公告をこのページに掲載します。</p>
   <p>現在、掲載中の公告はありません。</p>
   <p class="muted"><a href="/">SAWZAN トップへ戻る</a></p>
 </main>
+
+<!--SITE-FOOTER-->
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 SAWZAN</span>
+    <a href="../koukoku/">電子公告</a>
+  </div>
+</footer>
+<!--/SITE-FOOTER-->
 </body>
 </html>

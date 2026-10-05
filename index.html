@@ -163,7 +163,8 @@
   .mail { display: inline-block; margin-top: 10px; font-family: var(--serif); font-weight: 800; font-size: clamp(1.3rem, 4.6vw, 2.2rem); letter-spacing: 0.06em; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
   .mail:hover { color: var(--accent); }
 
-  footer { margin-top: 112px; border-top: 1px solid var(--rule); padding: 30px 0 48px; color: var(--muted); font-size: 0.85rem; }
+  footer { margin-top: 112px; position: relative; padding: 38px 0 48px; color: var(--muted); font-size: 0.85rem; }
+  footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px; background: conic-gradient(from 135deg at 50% 100%, transparent 0 90deg, var(--rule) 90deg 180deg, transparent 180deg) 0 0 / 18px 9px repeat-x; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between; }
   footer a { text-decoration: none; }
   footer a:hover { text-decoration: underline; }
@@ -269,7 +270,7 @@
         <p class="story-lead">創る力で、山を切り開く。</p>
         <p>社名の元は「創山」。「創」は創造の力、「山」は挑む壁です。</p>
         <p>ひとりの会社が、どこまでできるのか。創造したいという思いを原動力に、いまの時代に生まれた手立てを最大限に活かして、限界に挑みます。</p>
-        <p class="story-note">SAWZAN(ソウザン)は、その名前を、世界にも伝わる表記にしたものです。</p>
+        <p class="story-note">SAWZAN(ソウザン)は、その名前を、世界にも伝わる表記にしたものです。SAW(のこぎり)は、道を切り拓く道具。ZAN は、山。切り拓く力と、挑む山を、ひとつの名前に重ねています。</p>
       </div>
       <dl class="profile">
         <div><dt>名称</dt><dd>SAWZAN(ソウザン)</dd></div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SAWZAN</title>
-<meta name="description" content="SAWZAN(ソウザン)は、一般消費者向けのアプリ・ウェブサービスの企画と運営、デジタルコンテンツの制作を行います。">
+<meta name="description" content="創る力で、山を切り開く。SAWZAN(ソウザン)は、一般消費者向けのアプリ・ウェブサービスの企画と運営、デジタルコンテンツの制作を行います。">
 <meta name="theme-color" content="#F3EFE8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +16,14 @@
     --ink: #22201D;
     --muted: #6B645B;
     --rule: #D6CFC4;
-    --sky-top: #F6F0E4;
-    --sky-bottom: #ECDFCB;
-    --ridge-1: #C7CFCB;
-    --ridge-2: #A5B3AF;
-    --ridge-3: #7C9190;
-    --ridge-4: #4A6569;
+    --sky-top: #E7ECEC;
+    --sky-bottom: #F1EBDF;
+    --ridge-1: #8B9DA2;
+    --ridge-2: #62767D;
+    --ridge-3: #3D5660;
+    --ridge-4: #1F333C;
     --accent: #2E4953;
-    --sun: #D8A468;
+    --glow: #F5DDB0;
     --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
     --sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
   }
@@ -34,14 +34,14 @@
       --ink: #EBE6DD;
       --muted: #A0978B;
       --rule: #33302A;
-      --sky-top: #14130F;
-      --sky-bottom: #2A221A;
-      --ridge-1: #26302F;
-      --ridge-2: #2F3E3D;
-      --ridge-3: #3A4E4D;
-      --ridge-4: #486161;
+      --sky-top: #0E1213;
+      --sky-bottom: #1B1A16;
+      --ridge-1: #26323A;
+      --ridge-2: #1E2A31;
+      --ridge-3: #172228;
+      --ridge-4: #0F181D;
       --accent: #B8CECA;
-      --sun: #C8935C;
+      --glow: #E8C98C;
       color-scheme: dark;
     }
   }
@@ -51,14 +51,14 @@
     --ink: #EBE6DD;
     --muted: #A0978B;
     --rule: #33302A;
-    --sky-top: #14130F;
-    --sky-bottom: #2A221A;
-    --ridge-1: #26302F;
-    --ridge-2: #2F3E3D;
-    --ridge-3: #3A4E4D;
-    --ridge-4: #486161;
+    --sky-top: #0E1213;
+    --sky-bottom: #1B1A16;
+    --ridge-1: #26323A;
+    --ridge-2: #1E2A31;
+    --ridge-3: #172228;
+    --ridge-4: #0F181D;
     --accent: #B8CECA;
-    --sun: #C8935C;
+    --glow: #E8C98C;
     color-scheme: dark;
   }
 
@@ -111,13 +111,15 @@
   }
   .hero h1 span { display: block; }
   .hero .lead { margin: 30px 0 0; max-width: 31em; color: var(--muted); font-size: 1.02rem; }
-  .ridges { display: block; width: 100%; height: auto; margin-top: -3vw; position: relative; z-index: 1; }
-  .sun { fill: var(--sun); }
+  .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36px; z-index: 3; background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none; }
+  .ridges { display: block; width: 100%; height: auto; margin-top: -6vw; position: relative; z-index: 1; }
+  .cut-poly { transform-box: fill-box; transform-origin: 50% 0%; }
+  .cut-edge { stroke: url(#edge-g); stroke-width: 2; fill: none; }
   @media (prefers-reduced-motion: no-preference) {
-    .ridges .r1 { animation: drift 28s ease-in-out infinite alternate; }
-    .ridges .r2 { animation: drift 36s ease-in-out infinite alternate-reverse; }
-    .ridges .r3 { animation: drift 44s ease-in-out infinite alternate; }
-    @keyframes drift { from { transform: translateX(-14px); } to { transform: translateX(14px); } }
+    .cut-poly { animation: cut 2.4s cubic-bezier(.65,.05,.2,1) .35s both; }
+    .cut-edge { animation: edge 2.4s cubic-bezier(.65,.05,.2,1) .35s both; stroke-dasharray: 600; }
+    @keyframes cut { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    @keyframes edge { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
   }
 
   /* ---- 共通セクション ---- */
@@ -136,8 +138,10 @@
 
   /* ---- 会社概要 ---- */
   .about { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start; }
-  .about .story { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 1.12rem; line-height: 2.1; }
-  .about .story small { display: block; margin-top: 18px; font-family: var(--sans); color: var(--muted); font-size: 0.88rem; line-height: 1.9; }
+  .about .story { margin: 0; }
+  .about .story p { margin: 0 0 14px; font-size: 1rem; line-height: 2; }
+  .about .story .story-lead { font-family: var(--serif); font-weight: 800; font-size: 1.45rem; line-height: 1.6; letter-spacing: 0.05em; margin-bottom: 20px; }
+  .about .story .story-note { color: var(--muted); font-size: 0.9rem; margin-top: 20px; }
   dl.profile { margin: 0; border-top: 1px solid var(--rule); }
   dl.profile div { display: grid; grid-template-columns: 8.5em 1fr; gap: 12px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
   dl.profile dt { color: var(--muted); font-size: 0.9rem; }
@@ -177,6 +181,7 @@
     .brand { font-size: 0.92rem; }
     nav ul { gap: 18px; font-size: 0.78rem; white-space: nowrap; }
     .hero { padding-top: 76px; }
+    .ridges { height: 300px; margin-top: -10px; }
     .hero-body { padding-top: 9vh; }
     main section.wrap { padding-top: 76px; scroll-margin-top: 76px; }
     .sec-head { flex-direction: column; gap: 4px; margin-bottom: 30px; }
@@ -208,17 +213,38 @@
 <div class="hero" id="top">
   <div class="wrap">
     <div class="hero-body">
-      <p class="kicker">SAWZAN</p>
-      <h1><span>日々に、</span><span>ちいさな発見を。</span></h1>
-      <p class="lead">SAWZAN(ソウザン)は、アプリやウェブサービス、デジタルコンテンツを、ひとつずつ丁寧につくり、お届けしています。</p>
+      <p class="kicker">SAWZAN ／ 創山</p>
+      <h1><span>創る力で、</span><span>山を切り開く。</span></h1>
+      <p class="lead">創造力だけでは、動かせない山がある。それでも、つくりたい。いまは、ひとりの力を最大限に引き出す手立てがある。それらを味方に、SAWZAN(ソウザン)は、山を切り開いていきます。</p>
     </div>
   </div>
-  <svg class="ridges" viewBox="0 0 1440 360" preserveAspectRatio="none" role="img" aria-label="重なりあう山並みのイラスト">
-    <circle class="sun" cx="1090" cy="100" r="40"/>
-    <path class="r1" d="M-40 230 L170 128 L300 190 L470 96 L640 204 L820 120 L1010 214 L1210 136 L1480 236 L1480 380 L-40 380 Z" fill="var(--ridge-1)"/>
-    <path class="r2" d="M-40 262 L120 196 L290 250 L470 172 L650 258 L860 186 L1050 262 L1260 198 L1480 266 L1480 380 L-40 380 Z" fill="var(--ridge-2)"/>
-    <path class="r3" d="M-40 296 L150 246 L340 292 L560 232 L760 298 L980 244 L1190 300 L1480 252 L1480 380 L-40 380 Z" fill="var(--ridge-3)"/>
-    <path d="M-40 330 L220 296 L520 336 L820 300 L1120 338 L1480 304 L1480 380 L-40 380 Z" fill="var(--ridge-4)"/>
+  <svg class="ridges" viewBox="0 -90 1440 490" preserveAspectRatio="none" role="img" aria-label="立ちはだかる山と、その中を切り開いた一本の道から光がこぼれるイラスト">
+    <defs>
+      <linearGradient id="edge-g" gradientUnits="userSpaceOnUse" x1="0" y1="-90" x2="0" y2="400">
+        <stop offset="0" stop-color="var(--glow)" stop-opacity="0"/>
+        <stop offset="0.5" stop-color="var(--glow)" stop-opacity="0.9"/>
+        <stop offset="1" stop-color="var(--glow)" stop-opacity="1"/>
+      </linearGradient>
+      <linearGradient id="glow-g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="var(--glow)" stop-opacity="0"/>
+        <stop offset="0.35" stop-color="var(--glow)" stop-opacity="0.7"/>
+        <stop offset="0.7" stop-color="var(--glow)" stop-opacity="1"/>
+        <stop offset="1" stop-color="var(--glow)" stop-opacity="1"/>
+      </linearGradient>
+      <mask id="cut" maskUnits="userSpaceOnUse" x="0" y="-90" width="1440" height="490">
+        <rect x="0" y="-90" width="1440" height="490" fill="#fff"/>
+        <polygon class="cut-poly" points="1010,-90 1076,-90 952,400 868,400" fill="#000"/>
+      </mask>
+    </defs>
+    <polygon points="1010,-90 1076,-90 952,400 868,400" fill="url(#glow-g)"/>
+    <g mask="url(#cut)">
+      <path d="M-40 230 L130 70 L290 180 L470 20 L650 190 L830 50 L1010 200 L1210 30 L1480 220 L1480 420 L-40 420 Z" fill="var(--ridge-1)"/>
+      <path d="M-40 280 L110 160 L290 250 L470 110 L650 260 L860 130 L1050 260 L1260 120 L1480 270 L1480 420 L-40 420 Z" fill="var(--ridge-2)"/>
+      <path d="M-40 330 L150 230 L340 310 L560 190 L760 320 L980 220 L1190 320 L1480 230 L1480 420 L-40 420 Z" fill="var(--ridge-3)"/>
+      <path d="M-40 372 L220 320 L520 378 L820 322 L1120 380 L1480 330 L1480 420 L-40 420 Z" fill="var(--ridge-4)"/>
+    </g>
+    <path class="cut-edge" d="M1010 -90 L868 400"/>
+    <path class="cut-edge" d="M1076 -90 L952 400"/>
   </svg>
 </div>
 
@@ -247,7 +273,12 @@
   <section class="wrap" id="about">
     <div class="sec-head"><h2>会社概要</h2><span class="en">COMPANY</span></div>
     <div class="about">
-      <p class="story">創造する力で、自分たちの山をひとつずつ築いていく。<small>SAWZAN(ソウザン)という名前には、そんな思いを込めています。</small></p>
+      <div class="story">
+        <p class="story-lead">創る力で、山を切り開く。</p>
+        <p>社名の元は「創山」。「創」は創造の力、「山」は挑む壁です。</p>
+        <p>ひとりの会社が、どこまでできるのか。創造したいという思いを原動力に、いまの時代に生まれた手立てを最大限に活かして、限界に挑みます。</p>
+        <p class="story-note">SAWZAN(ソウザン)は、その名前を、世界にも伝わる表記にしたものです。</p>
+      </div>
       <dl class="profile">
         <div><dt>名称</dt><dd>SAWZAN(ソウザン)</dd></div>
         <div><dt>事業内容</dt><dd>一般消費者向けのアプリ・ウェブサービスの企画、制作、提供、運営 / デジタルコンテンツの企画、制作、配信 / メディア・情報提供サービスの運営</dd></div>

@@ -4,46 +4,212 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SAWZAN</title>
+<meta name="description" content="SAWZAN(ソウザン)は、アプリ・ウェブサービスの開発と運営、音声や文章などのコンテンツ制作を行います。">
+<meta name="theme-color" content="#F4F1EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Shippori+Mincho:wght@500;700&display=swap">
 <style>
   :root {
-    --bg: #F8F5F0;
-    --surface: #FFFDFC;
-    --text: #292725;
-    --text-muted: #726B63;
-    --border: #DED8D1;
-    --primary: #344A53;
+    --bg: #F4F1EC;
+    --ink: #24211E;
+    --muted: #6E675F;
+    --rule: #D9D3CA;
+    --ridge-1: #C9D1CD;
+    --ridge-2: #A7B5B1;
+    --ridge-3: #7F9390;
+    --ridge-4: #4F6A6E;
+    --accent: #2F4A54;
+    --sun: #D9A86C;
+    --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1B1917;
-      --surface: #242220;
-      --text: #EFEAE3;
-      --text-muted: #A79E93;
-      --border: #3B3733;
-      --primary: #C9D6D3;
+    :root:not([data-theme="light"]) {
+      --bg: #141311;
+      --ink: #ECE7DF;
+      --muted: #A1988C;
+      --rule: #34302B;
+      --ridge-1: #1F2424;
+      --ridge-2: #26302F;
+      --ridge-3: #30403F;
+      --ridge-4: #3C5251;
+      --accent: #B9CFCB;
+      --sun: #C99660;
+      color-scheme: dark;
     }
   }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-    line-height: 1.8;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
+  :root[data-theme="dark"] {
+    --bg: #141311;
+    --ink: #ECE7DF;
+    --muted: #A1988C;
+    --rule: #34302B;
+    --ridge-1: #1F2424;
+    --ridge-2: #26302F;
+    --ridge-3: #30403F;
+    --ridge-4: #3C5251;
+    --accent: #B9CFCB;
+    --sun: #C99660;
+    color-scheme: dark;
   }
-  h1 { font-size: 1.6rem; border-bottom: 2px solid var(--primary); padding-bottom: 12px; }
-  h2 { font-size: 1.15rem; margin-top: 2.2em; color: var(--primary); }
-  p, li { color: var(--text); }
-  .muted { color: var(--text-muted); font-size: 0.9rem; }
-  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-  th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-size: 0.92rem; }
-  th { background: var(--surface); }
-  a { color: var(--primary); }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- ヒーロー ---- */
+  .hero { position: relative; overflow: hidden; padding-top: 28px; }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    font-size: 0.95rem;
+  }
+  .hero-body { padding: 14vh 0 0; position: relative; z-index: 2; }
+  .hero h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 8.4vw, 5.4rem);
+    line-height: 1.28;
+    letter-spacing: 0.04em;
+    text-wrap: balance;
+  }
+  .hero h1 span { display: block; }
+  .hero .lead {
+    margin: 28px 0 0;
+    max-width: 30em;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+  .ridges {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: -4vw;
+    position: relative;
+    z-index: 1;
+  }
+  .ridges path { transition: transform 1.2s ease; }
+  .sun { fill: var(--sun); opacity: 0.9; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ridges .r1 { animation: drift 26s ease-in-out infinite alternate; }
+    .ridges .r2 { animation: drift 34s ease-in-out infinite alternate-reverse; }
+    .ridges .r3 { animation: drift 42s ease-in-out infinite alternate; }
+    @keyframes drift { from { transform: translateX(-12px); } to { transform: translateX(12px); } }
+  }
+
+  /* ---- 本文 ---- */
+  main section.wrap { padding-top: 96px; padding-bottom: 0; }
+  section h2 {
+    margin: 0 0 8px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+  }
+  .eyebrow { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.22em; margin-bottom: 6px; }
+
+  .works { margin: 36px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+  .works li {
+    display: grid;
+    grid-template-columns: 14em 1fr;
+    gap: 8px 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .works h3 { margin: 0; font-family: var(--serif); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; }
+  .works p { margin: 0; color: var(--muted); }
+
+  main section.contact { padding-bottom: 112px; }
+  .mail {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 4.4vw, 2rem);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+  }
+  .mail:hover { color: var(--accent); }
+  .note { margin: 16px 0 0; color: var(--muted); font-size: 0.9rem; }
+
+  footer { border-top: 1px solid var(--rule); padding: 28px 0 44px; color: var(--muted); font-size: 0.85rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+  footer a { text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    .hero-body { padding-top: 10vh; }
+    .works li { grid-template-columns: 1fr; padding: 22px 0; }
+    main section.wrap { padding-top: 64px; }
+  }
 </style>
 </head>
 <body>
-<h1>SAWZAN</h1>
-<p class="muted">お問い合わせ: <a href="mailto:support@sawzan.com">support@sawzan.com</a></p>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">SAWZAN</div>
+    <div class="hero-body">
+      <h1><span>日々に、</span><span>ちいさな発見を。</span></h1>
+      <p class="lead">SAWZAN(ソウザン)は、アプリやウェブサービス、音声や文章のコンテンツを、ひとつずつ丁寧につくり、お届けしています。</p>
+    </div>
+  </div>
+  <svg class="ridges" viewBox="0 0 1440 360" preserveAspectRatio="none" role="img" aria-label="重なりあう山並みのイラスト">
+    <circle class="sun" cx="1090" cy="96" r="38"/>
+    <path class="r1" d="M-40 230 L170 128 L300 190 L470 96 L640 204 L820 120 L1010 214 L1210 136 L1480 236 L1480 380 L-40 380 Z" fill="var(--ridge-1)"/>
+    <path class="r2" d="M-40 262 L120 196 L290 250 L470 172 L650 258 L860 186 L1050 262 L1260 198 L1480 266 L1480 380 L-40 380 Z" fill="var(--ridge-2)"/>
+    <path class="r3" d="M-40 296 L150 246 L340 292 L560 232 L760 298 L980 244 L1190 300 L1480 252 L1480 380 L-40 380 Z" fill="var(--ridge-3)"/>
+    <path d="M-40 330 L220 296 L520 336 L820 300 L1120 338 L1480 304 L1480 380 L-40 380 Z" fill="var(--ridge-4)"/>
+  </svg>
+</header>
+
+<main>
+  <section class="wrap" id="works">
+    <div class="eyebrow">WHAT WE DO</div>
+    <h2>つくるもの</h2>
+    <ul class="works">
+      <li>
+        <h3>アプリ・ウェブサービス</h3>
+        <p>スマートフォンのアプリや、個人向けのウェブサービスを、企画から開発、運営まで手がけます。使う人の毎日に、そっと寄り添うものを目指します。</p>
+      </li>
+      <li>
+        <h3>音声・文章のコンテンツ</h3>
+        <p>オーディオドラマやポッドキャストなどの音声、読み物としての文章を制作します。じっくり味わえるものを、少しずつ。</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="wrap contact" id="contact">
+    <div class="eyebrow">CONTACT</div>
+    <h2>お問い合わせ</h2>
+    <a class="mail" href="mailto:support@sawzan.com">support@sawzan.com</a>
+    <p class="note">サービスについてのご質問、ご要望、ご連絡は、こちらまでお寄せください。</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 SAWZAN</span>
+    <a href="koukoku/">電子公告</a>
+  </div>
+</footer>
+
 </body>
 </html>

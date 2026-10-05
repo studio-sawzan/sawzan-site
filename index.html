@@ -25,6 +25,8 @@
     --ridge-4: #1F333C;
     --accent: #2E4953;
     --glow: #F5DDB0;
+    --pass-halo: 0;
+    --dot: #F2D49B;
     --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
     --sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
   }
@@ -43,6 +45,8 @@
       --ridge-4: #0F181D;
       --accent: #B8CECA;
       --glow: #E8C98C;
+      --pass-halo: 1;
+      --dot: #F2D49B;
       color-scheme: dark;
     }
   }
@@ -60,6 +64,8 @@
     --ridge-4: #0F181D;
     --accent: #B8CECA;
     --glow: #E8C98C;
+    --pass-halo: 1;
+    --dot: #F2D49B;
     color-scheme: dark;
   }
 
@@ -115,10 +121,14 @@
   .hero .lead { margin: 30px 0 0; max-width: 31em; color: var(--muted); font-size: 1.02rem; }
   .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36px; z-index: 3; background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none; }
   .ridges { display: block; width: 100%; height: auto; margin-top: -6vw; position: relative; z-index: 1; }
+  .pass-glow-wrap { opacity: var(--pass-halo); }
+  .pass-dot { fill: var(--dot); stroke: var(--ridge-4); stroke-width: 2; }
   .trail { fill: none; stroke: var(--glow); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
   @media (prefers-reduced-motion: no-preference) {
     .trail { animation: open-trail 3.2s cubic-bezier(.5,.1,.3,1) .5s both; }
     .pass-glow { animation: pass-on 1.6s ease-out 3.2s both; }
+    .pass-dot { animation: dot-on .7s ease-out 3.4s both; transform-box: fill-box; transform-origin: center; }
+    @keyframes dot-on { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: scale(1); } }
     @keyframes open-trail { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
     @keyframes pass-on { from { opacity: 0; } to { opacity: 1; } }
   }
@@ -233,12 +243,13 @@
     <path d="M-40 300 L120 210 L260 270 L420 190 L560 280 L1000 260 L1160 180 L1320 260 L1480 200 L1480 460 L-40 460 Z" fill="var(--ridge-1)"/>
     <path d="M-40 350 L160 270 L330 340 L520 260 L700 350 L1040 330 L1220 250 L1480 330 L1480 460 L-40 460 Z" fill="var(--ridge-2)"/>
     <!-- 峠の光 -->
-    <circle class="pass-glow" cx="790" cy="104" r="86" fill="url(#pass-g)"/>
+    <g class="pass-glow-wrap"><circle class="pass-glow" cx="790" cy="104" r="86" fill="url(#pass-g)"/></g>
     <!-- そびえる山(中央に、低くなった峠がある) -->
     <polygon points="300,440 500,250 640,160 742,48 790,110 850,38 960,230 1180,440" fill="var(--ridge-3)"/>
     <polygon points="300,440 500,250 640,160 742,48 790,110 790,440" fill="var(--ridge-4)"/>
     <!-- 拓かれていく道(麓から峠へ、つづら折り) -->
     <path class="trail" pathLength="1" d="M640 372 L770 346 L690 312 L808 282 L722 246 L824 214 L752 178 L812 144 L790 112"/>
+    <circle class="pass-dot" cx="790" cy="110" r="8"/>
     <!-- 手前の低い山 -->
     <path d="M-40 420 L220 388 L520 430 L820 396 L1120 432 L1480 404 L1480 470 L-40 470 Z" fill="var(--ridge-4)"/>
   </svg>

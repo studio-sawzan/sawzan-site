@@ -112,11 +112,14 @@
     .business article + article { border-top: 1px solid var(--rule); }
     .about { grid-template-columns: 1fr; gap: 36px; }
   }
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 2.2rem; letter-spacing: 0.02em; }
+  }
   @media (max-width: 640px) {
-            .hero { padding-top: 84px; }
+    .hero { padding-top: var(--header-h); }
     .ridges { height: 340px; margin-top: -10px; }
     .hero-body { padding-top: 9vh; }
-    main section.wrap { padding-top: 76px; scroll-margin-top: 84px; }
+    main section.wrap { padding-top: 76px; scroll-margin-top: var(--header-h); }
     .sec-head { flex-direction: column; gap: 4px; margin-bottom: 30px; }
     dl.profile div { grid-template-columns: 1fr; gap: 2px; padding: 14px 0; }
     .history::before { left: 5.6em; }

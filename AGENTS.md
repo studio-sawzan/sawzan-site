@@ -88,3 +88,7 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 - 衝突は自動解決せずユーザー判断を仰ぐ
 - 変更内容([[koinryu_iap_pricing_decision]]や利用規約の内容変更等)は
   ユーザーに確認してから反映する(特に運営者名義・法的表記に関わる変更)
+
+## 共通ヘッダー・フッター
+- メニューの項目・順序とフッターは `tools/build.py` が一元管理し、`index.html` と `works/index.html` の `<!--SITE-HEADER-->`/`<!--SITE-FOOTER-->` の間へ差し込む。直接HTMLを編集せず、`MENU` を直して `python3 tools/build.py` を実行する(`--check` で最新か確認)。
+- 新しいページを足す時は、`PAGES` に追加し、マーカーを置く。

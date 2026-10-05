@@ -26,6 +26,8 @@
     --accent: #2E4953;
     --glow: #F5DDB0;
     --trail: #ED7210;
+    --beyond: #F6A63C;
+    --beyond-core: #FFE2A8;
     --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
     --sans: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
   }
@@ -45,6 +47,8 @@
       --accent: #B8CECA;
       --glow: #E8C98C;
       --trail: #F28A2E;
+      --beyond: #F2A03A;
+      --beyond-core: #FFE7B8;
       color-scheme: dark;
     }
   }
@@ -63,6 +67,8 @@
     --accent: #B8CECA;
     --glow: #E8C98C;
     --trail: #F28A2E;
+    --beyond: #F2A03A;
+    --beyond-core: #FFE7B8;
     color-scheme: dark;
   }
 
@@ -118,9 +124,12 @@
   .hero .lead { margin: 30px 0 0; max-width: 31em; color: var(--muted); font-size: 1.02rem; }
   .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36px; z-index: 3; background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none; }
   .ridges { display: block; width: 100%; height: auto; margin-top: -6vw; position: relative; z-index: 1; }
+  .beyond { opacity: 1; }
   .trail { fill: none; stroke: var(--trail); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
   @media (prefers-reduced-motion: no-preference) {
     .trail { animation: open-trail 3.2s cubic-bezier(.5,.1,.3,1) .5s both; }
+    .beyond { animation: beyond-on 2.2s ease-out 3.3s both; }
+    @keyframes beyond-on { from { opacity: 0; } to { opacity: 1; } }
     @keyframes open-trail { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
   }
 
@@ -224,6 +233,15 @@
   </div>
   <svg class="ridges" viewBox="0 0 1440 440" preserveAspectRatio="none" role="img" aria-label="そびえる大きな山に、麓から峠へ向かって一筋の道が拓かれていくイラスト">
     <defs>
+      <radialGradient id="beyond-g" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="var(--beyond-core)" stop-opacity="1"/>
+        <stop offset="0.35" stop-color="var(--beyond)" stop-opacity="0.85"/>
+        <stop offset="1" stop-color="var(--beyond)" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="ray-g" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0" stop-color="var(--beyond)" stop-opacity="0.75"/>
+        <stop offset="1" stop-color="var(--beyond)" stop-opacity="0"/>
+      </linearGradient>
       <linearGradient id="mtn-g" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0" stop-color="var(--ridge-4)"/>
         <stop offset="1" stop-color="var(--ridge-3)"/>
@@ -232,6 +250,18 @@
     <!-- 遠い山並み -->
     <path d="M-40 300 L120 210 L260 270 L420 190 L560 280 L1000 260 L1160 180 L1320 260 L1480 200 L1480 460 L-40 460 Z" fill="var(--ridge-1)"/>
     <path d="M-40 350 L160 270 L330 340 L520 260 L700 350 L1040 330 L1220 250 L1480 330 L1480 460 L-40 460 Z" fill="var(--ridge-2)"/>
+    <!-- 峠の向こうから差す光(山の後ろにあるので、峠の切れ込みから漏れて見える) -->
+    <g class="beyond">
+      <circle cx="796" cy="98" r="130" fill="url(#beyond-g)"/>
+      <g fill="url(#ray-g)">
+        <polygon points="790,104 764,6 782,6"/>
+        <polygon points="794,104 800,-14 822,-14"/>
+        <polygon points="798,104 868,10 888,22"/>
+        <polygon points="786,104 712,14 730,0"/>
+        <polygon points="800,104 930,44 940,64"/>
+        <polygon points="784,104 656,52 650,72"/>
+      </g>
+    </g>
     <!-- そびえる山(中央に、低くなった峠がある) -->
     <polygon points="300,440 500,250 640,160 742,48 790,110 850,38 960,230 1180,440" fill="url(#mtn-g)"/>
     <!-- 拓かれていく道(麓から峠へ、つづら折り。ロゴと同じ橙) -->

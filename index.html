@@ -50,7 +50,9 @@
     text-wrap: balance;
   }
   .hero h1 span { display: block; }
-  .hero .lead { margin: 30px 0 0; max-width: 31em; color: var(--muted); font-size: 1.02rem; }
+  .nb { white-space: nowrap; }
+  .hero .lead + .lead { margin-top: 16px; }
+  .hero .lead { margin: 30px 0 0; max-width: 37em; text-wrap: pretty; color: var(--muted); font-size: 1.02rem; }
   .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36px; z-index: 3; background: linear-gradient(180deg, transparent, var(--bg)); pointer-events: none; }
   .ridges { display: block; width: 100%; height: auto; margin-top: -6vw; position: relative; z-index: 1; }
   .beyond { opacity: 1; }
@@ -154,7 +156,8 @@
     <div class="hero-body">
       <p class="kicker">SAWZAN ／ 創山</p>
       <h1><span>創る力で、</span><span>山を切り開く。</span></h1>
-      <p class="lead">創造力だけでは、動かせない山がある。それでも、つくりたい。いまは、ひとりの力を最大限に引き出す手立てがある。それらを味方に、SAWZAN(ソウザン)は、山を切り開いていきます。</p>
+      <p class="lead">創造力だけでは、越えられない山がある。<br>それでも、その先にあるものをつくりたい。</p>
+      <p class="lead">いまは、ひとりの力を最大限に引き出す<span class="nb">手立てがある。</span><br>それらを味方に、SAWZAN（ソウザン）は山を<span class="nb">切り拓いていきます。</span></p>
     </div>
   </div>
   <svg class="ridges" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice" role="img" aria-label="そびえる大きな山に、麓から峠へ向かって一筋の道が拓かれていくイラスト">

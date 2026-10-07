@@ -19,6 +19,14 @@
  *   date        公開日(任意。例 "2026-11")
  */
 window.SAWZAN_WORKS = [
+  {
+    id: "enishiru",
+    category: "app",
+    title: "えにしる",
+    description: "四柱推命で知る、私とあなた。生年月日から、自分と大切な人との相性を読み解く占いアプリ。",
+    status: "preparing",
+    image: "../apps/enishiru/img/app-icon.jpg"
+  },
   // ここに、実際の作品を足す。(例)
   // {
   //   id: "example-app",

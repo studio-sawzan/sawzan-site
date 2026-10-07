@@ -64,29 +64,51 @@ def footer(prefix):
     )
 
 
-def stamp(text, tag, body):
+def stamp(text, tag, body, rel):
     pat = re.compile(rf"<!--{tag}-->.*?<!--/{tag}-->", re.S)
-    if not pat.search(text):
-        raise SystemExit(f"マーカー <!--{tag}--> がありません")
+    n = len(pat.findall(text))
+    if n != 1 or text.count(f"<!--{tag}-->") != 1 or text.count(f"<!--/{tag}-->") != 1:
+        raise SystemExit(f"{rel}: マーカー <!--{tag}-->…<!--/{tag}--> が、ちょうど1組ではありません(見つかった数: {n})")
     return pat.sub(lambda m: f"<!--{tag}-->\n{body}\n<!--/{tag}-->", text)
 
 
+def untracked_pages():
+    """マーカーを持つのに PAGES に無いHTML(登録忘れ)を探す。"""
+    found = []
+    for path in sorted(ROOT.rglob("*.html")):
+        rel = path.relative_to(ROOT).as_posix()
+        if rel in PAGES or any(part.startswith(".") for part in path.relative_to(ROOT).parts):
+            continue
+        if "<!--SITE-HEADER-->" in path.read_text(encoding="utf-8"):
+            found.append(rel)
+    return found
+
+
 def main():
-    check = "--check" in sys.argv
-    stale = []
+    args = sys.argv[1:]
+    if any(a != "--check" for a in args):
+        raise SystemExit("使い方: python3 tools/build.py [--check]")
+    check = bool(args)
+    # 先に全ページを検証し、問題が無い時だけ書き込む(途中で止まって、一部だけ更新された状態にしない)。
+    results = {}
     for rel, (prefix, current) in PAGES.items():
-        path = ROOT / rel
-        old = path.read_text(encoding="utf-8")
-        new = stamp(old, "SITE-HEADER", header(prefix, current))
-        new = stamp(new, "SITE-FOOTER", footer(prefix))
-        if new != old:
-            stale.append(rel)
-            if not check:
-                path.write_text(new, encoding="utf-8")
-    if check and stale:
-        print("古い:", ", ".join(stale))
-        sys.exit(1)
-    print("更新:" if not check else "最新です", ", ".join(stale) if stale else "")
+        old = (ROOT / rel).read_text(encoding="utf-8")
+        new = stamp(old, "SITE-HEADER", header(prefix, current), rel)
+        new = stamp(new, "SITE-FOOTER", footer(prefix), rel)
+        results[rel] = (old, new)
+    missing = untracked_pages()
+    if missing:
+        raise SystemExit("PAGES に未登録のページがあります: " + ", ".join(missing))
+    stale = [rel for rel, (old, new) in results.items() if old != new]
+    if check:
+        if stale:
+            print("古い:", ", ".join(stale))
+            sys.exit(1)
+        print("最新です")
+        return
+    for rel in stale:
+        (ROOT / rel).write_text(results[rel][1], encoding="utf-8")
+    print("更新:", ", ".join(stale) if stale else "(変更なし)")
 
 
 if __name__ == "__main__":

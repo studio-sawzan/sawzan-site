@@ -52,7 +52,7 @@ footer a:hover { text-decoration: underline; }
 .doc h2 { margin: 2.2em 0 0; font-family: var(--serif); font-size: 1.15rem; color: var(--accent); letter-spacing: 0.04em; }
 .doc a { color: var(--accent); }
 .doc .muted { color: var(--muted); font-size: 0.9rem; }
-.doc table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+.doc table { border-collapse: collapse; width: 100%; margin: 1em 0; display: block; overflow-x: auto; }
 .doc th, .doc td { border: 1px solid var(--rule); padding: 8px 12px; text-align: left; font-size: 0.92rem; }
 .doc th { background: var(--surface); }
 .doc .crumb { margin: 0 0 10px; font-size: 0.85rem; letter-spacing: 0.08em; }
@@ -77,12 +77,13 @@ footer a:hover { text-decoration: underline; }
   .site-header .wrap { flex-direction: column; justify-content: center; align-items: flex-start; height: var(--header-h); gap: 2px; }
   .brand { font-size: 0.92rem; gap: 10px; }
   .brand img { height: 34px; }
-  nav ul { gap: 14px; font-size: 0.72rem; white-space: nowrap; }
+  nav ul { gap: 14px; font-size: 0.78rem; white-space: nowrap; }
   nav a { letter-spacing: 0.03em; }
   .doc main { padding-top: calc(var(--header-h) + 20px); }
 }
-/* 幅が狭い端末(360px以下)では、メニューを2行に折り返す */
-@media (max-width: 360px) {
-  :root { --header-h: 108px; }
-  nav ul { flex-wrap: wrap; gap: 2px 14px; white-space: normal; }
+/* 幅が狭い端末(420px以下)では、メニューを2行に折り返す */
+@media (max-width: 420px) {
+  :root { --header-h: 124px; }
+  nav ul { flex-wrap: wrap; gap: 0 16px; white-space: normal; font-size: 0.82rem; }
+  nav a { display: inline-block; padding: 5px 0; }
 }

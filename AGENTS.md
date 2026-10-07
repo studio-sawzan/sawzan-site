@@ -40,12 +40,21 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 
 - `index.html` — 会社の入口(SAWZANのみ。アプリ一覧は載せない)
 - `koukoku/index.html` — 電子公告の掲載先。設立前は準備中と表示する
-- `enishiru/index.html` — えにしるの案内(ポリシーへのリンク、問い合わせ先)
-- `enishiru/privacy.html` — えにしるのプライバシーポリシー(App Store/Google Play審査用)
-- `enishiru/terms.html` — えにしるの利用規約
+- `apps/enishiru/index.html` — えにしるの案内(ポリシーへのリンク、問い合わせ先)
+- `apps/enishiru/privacy.html` — えにしるのプライバシーポリシー(App Store/Google Play審査用)
+- `apps/enishiru/terms.html` — えにしるの利用規約
+- `apps/enishiru/account-deletion.html` — アカウント削除の案内(Google Play用)
 - `privacy.html` / `terms.html`(直下) — 旧URLからの転送ページ(中身は上の2つへの自動転送。消さない)
 
-ストアに登録するURLは `https://sawzan.com/enishiru/privacy.html` を使う。
+ストアに登録するURLは `https://sawzan.com/apps/enishiru/privacy.html` を使う(ストアには**最終URLを直接**登録する。転送ページを登録しない)。
+
+### URL設計(2026-10-07、Codex相談のうえ採用)
+- 作品は**種類別**: アプリは `/apps/{slug}/`、音楽は `/music/{slug}/`。動画は原則YouTubeへの外部リンク(独自ページは必要になってから `/videos/{slug}/`)。書籍・記事も、必要になってから追加。
+- `/works/` は**一覧専用**(画面の名前)。個別作品のURLは、`works` の名前を変えても動かない。
+- slugは小文字ASCIIとハイフン。アプリ固有の文書(規約・ポリシー・削除案内)は、そのアプリ配下に置き、**ストア登録後はURLを動かさない**。
+- 旧URL(`/enishiru/*`、ルート直下の `/privacy.html` `/terms.html`)は、`meta refresh`(即時)+canonical+noindexの転送ページとして**期限なしで維持**。転送の連鎖を作らない(ルート直下の旧URLは最終URLへ直接)。
+- `/koukoku/` は登記に載せる固定URL。再編の対象にしない。
+- 新しいアプリを足す時: `apps/{slug}/` に同じ形のページを置き、`tools/build.py` の `PAGES` に追加(prefixは `"../../"`)。
 
 ## 運営者名義について【重要】
 
@@ -93,4 +102,4 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 - メニューの項目・順序とフッターは `tools/build.py` が一元管理し、`index.html` と `works/index.html` の `<!--SITE-HEADER-->`/`<!--SITE-FOOTER-->` の間へ差し込む。直接HTMLを編集せず、`MENU` を直して `python3 tools/build.py` を実行する(`--check` で最新か確認)。
 - 新しいページを足す時は、`PAGES` に追加し、マーカーを置く。
 - 共通スタイルは `assets/site.css`(色・文字・ヘッダー/フッター・文書ページ `<body class="doc">`)。ページ固有のスタイルだけを各ページの `<style>` に書く。トップの山の色(`--ridge-*` 等)は `index.html` に残している。
-- 文書ページ(`koukoku/`、`enishiru/*`)も、共通ヘッダー/フッターを使う(`tools/build.py` の `PAGES`)。
+- 文書ページ(`koukoku/`、`apps/enishiru/*`)も、共通ヘッダー/フッターを使う(`tools/build.py` の `PAGES`)。

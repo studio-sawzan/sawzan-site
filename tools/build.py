@@ -26,10 +26,10 @@ PAGES = {
     "index.html": ("", None),
     "works/index.html": ("../", "works/"),
     "koukoku/index.html": ("../", None),
-    "enishiru/index.html": ("../", None),
-    "enishiru/privacy.html": ("../", None),
-    "enishiru/terms.html": ("../", None),
-    "enishiru/account-deletion.html": ("../", None),
+    "apps/enishiru/index.html": ("../../", None),
+    "apps/enishiru/privacy.html": ("../../", None),
+    "apps/enishiru/terms.html": ("../../", None),
+    "apps/enishiru/account-deletion.html": ("../../", None),
 }
 
 

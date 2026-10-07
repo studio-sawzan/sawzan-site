@@ -69,6 +69,14 @@ footer a:hover { text-decoration: underline; }
 .doc ul.features { list-style: none; margin: 1em 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
 .doc ul.features li { padding: 16px 4px; border-bottom: 1px solid var(--rule); }
 .doc ul.features strong { display: block; font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.04em; margin-bottom: 4px; }
+.doc ul.shots { list-style: none; margin: 1.2em 0 0.6em; padding: 0 0 8px; display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; }
+.doc ul.shots li { flex: 0 0 auto; width: 165px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 8px; }
+.doc ul.shots img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 14px; background: var(--bg-soft); }
+.doc ul.shots span { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.doc ol.steps { list-style: none; counter-reset: step; margin: 1em 0; padding: 0; border-top: 1px solid var(--rule); }
+.doc ol.steps li { counter-increment: step; position: relative; padding: 16px 4px 16px 44px; border-bottom: 1px solid var(--rule); }
+.doc ol.steps li::before { content: counter(step); position: absolute; left: 6px; top: 16px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--brand); display: grid; place-items: center; font-family: var(--serif); font-weight: 700; font-size: 0.9rem; }
+.doc ol.steps strong { display: block; font-family: var(--serif); font-size: 1.05rem; letter-spacing: 0.04em; margin-bottom: 4px; }
 .doc .wrap { max-width: 760px; padding: 0 20px; }
 
 @media (max-width: 640px) {

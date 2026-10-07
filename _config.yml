@@ -1,0 +1,9 @@
+# GitHub Pages(Jekyll)の設定。内部メモ・開発用のファイルを、サイトとして配信しない。
+# リポジトリ自体は公開なので、これらのファイルにも、住所・氏名・電話・個人メールは書かない(AGENTS.md参照)。
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - docs
+  - tools
+  - _config.yml

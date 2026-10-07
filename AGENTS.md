@@ -1,12 +1,12 @@
 # sawzan-site について
 
+> **注意: このリポジトリは公開(GitHub Pages)。** 内部メモのうち、住所・氏名・電話・個人メールは書かない。`_config.yml` で、このファイル・`docs/`・`tools/`・`README.md`・`CLAUDE.md` はサイトとして配信しない設定(2026-10-07)。ただし、リポジトリ自体は公開なので、書く内容は公開前提にする。
+
 ## 会社情報の参照元
 
 SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の共有HQ
 `/Volumes/workspace/Projects/app-company-hq/company/status.md` を確認する。
-バーチャルオフィスの利用住所は、2026-10-01のGMOオフィスサポート契約情報として
-`〒104-0061 東京都中央区銀座１丁目１２番４号 N&E BLD.6F`。
-建物名を省略しない。これは契約中の住所であり、法人登記が完了したという意味ではない。
+バーチャルオフィスの利用住所は、上のHQの資料(`company/status.md`)にある。**この公開リポジトリには、住所・氏名・電話番号・個人のメールアドレスを書かない**(リポジトリもGitHub Pagesも公開されるため)。
 公開ページに住所を載せるかどうかは、そのページの目的とユーザーの指示を確認する。
 
 株式会社SAWZAN(2026-09-30時点、法人登記に向けて準備中)が運営する
@@ -16,7 +16,7 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 
 - **本番公開**: GitHub Pages経由で https://sawzan.com (カスタムドメイン設定済み)
   - GitHubリポジトリ: https://github.com/studio-sawzan/sawzan-site
-  - GitHubアカウント: `studio-sawzan`(studio.sawzan@gmail.com、2026-09-30作成)
+  - GitHubアカウント: `studio-sawzan`(2026-09-30作成。連絡先のメールアドレスは、HQの資料を参照)
 - **バックアップ**: DS218j(NAS)の bare リポジトリ
   - `ssh://ds218j/var/services/homes/zeronos/git-repos/sawzan-site.git`
   - second-brainと同じ運用(pull→commit→push、衝突は自動解決せずユーザー判断)

@@ -5,7 +5,7 @@
 ## 会社情報の参照元
 
 SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の共有HQ
-`/Volumes/workspace/Projects/app-company-hq/company/status.md` を確認する。
+HQ(`app-company-hq`)の `company/status.md` を確認する。
 バーチャルオフィスの利用住所は、上のHQの資料(`company/status.md`)にある。**この公開リポジトリには、住所・氏名・電話番号・個人のメールアドレスを書かない**(リポジトリもGitHub Pagesも公開されるため)。
 公開ページに住所を載せるかどうかは、そのページの目的とユーザーの指示を確認する。
 
@@ -17,21 +17,11 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 - **本番公開**: GitHub Pages経由で https://sawzan.com (カスタムドメイン設定済み)
   - GitHubリポジトリ: https://github.com/studio-sawzan/sawzan-site
   - GitHubアカウント: `studio-sawzan`(2026-09-30作成。連絡先のメールアドレスは、HQの資料を参照)
-- **バックアップ**: DS218j(NAS)の bare リポジトリ
-  - `ssh://ds218j/var/services/homes/zeronos/git-repos/sawzan-site.git`
-  - second-brainと同じ運用(pull→commit→push、衝突は自動解決せずユーザー判断)
+- **バックアップ**: NASのbareリポジトリ(詳細はHQの `notes/sawzan-site-ops.md`。公開リポジトリには書かない)
 
-## HTTPS・Cloudflareの構成(2026-10-01)
+## DNS・HTTPS・Cloudflare
 
-- DNSはCloudflare(DNSレコード5本=Aレコード4本+www CNAMEは**プロキシ有効**)。
-  GitHub Pagesの「Enforce HTTPS」も有効。
-- Cloudflare側: SSL/TLSは**Full (strict)**、「常にHTTPSを使用」オン、
-  **HSTS有効(max-age 6か月=15552000秒、サブドメイン適用・プリロードはオフ)**、No-Sniffオン。
-- メール転送(support@sawzan.com)のMX/TXTレコードはプロキシ対象外(触らない)。
-- **Cloudflareをやめる/プロキシを外す場合の注意**: HSTSがブラウザに最大6か月キャッシュされる。
-  先にHSTSを無効にし、max-ageの期間が過ぎるのを待ってから、プロキシ/HTTPSを外すこと
-  (順序を誤ると、訪問者がサイトに入れなくなる)。
-- SSL/TLSモードをFlexibleにしない(GitHubのHTTPS強制と衝突して無限リダイレクトになる)。
+運用の詳細(DNS、SSL/TLSモード、HSTS、Cloudflareをやめる時の順序、メール転送)は、非公開のHQ側 `notes/sawzan-site-ops.md` にある。**公開リポジトリには書かない。** 注意点だけ: Cloudflareの設定を変える前に、必ずそのメモを読む(HSTSが長く残るため、順序を誤ると、訪問者が入れなくなる)。
 
 ## ページ構成(アプリごとにフォルダを掘る、2026-10-01)
 
@@ -66,7 +56,7 @@ SAWZANの設立・契約状況など、変わり得る会社情報はCodex側の
 ## 特定商取引法の表示(2026-10-03)
 
 サブスク販売に伴う特商法ページは、未作成・未公開。電話番号が必要な理由、VO住所の条件、責任者氏名の論点は
-`/Volumes/workspace/Projects/app-company-hq/company/tokushoho_handoff_2026-10-03.md` を読むこと。
+HQ(`app-company-hq`)の `company/tokushoho_handoff_2026-10-03.md` を読むこと。
 ユーザーの承認なしに、住所・氏名・電話番号を公開ページに載せない。
 
 ## 作品・サービスのページ(2026-10-05、ユーザー指示で新設)

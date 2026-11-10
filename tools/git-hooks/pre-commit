@@ -1,0 +1,8 @@
+#!/bin/sh
+PATH=/usr/bin:$PATH  # /usr/local/bin の古いx86版gitより、/usr/bin を先にする
+# commit前に、(1)md/js/jsonに電話番号の形を足していないか、(2)共通部品・noindexの検査(tools/build.py --check)を確認する。
+# このリポジトリは公開。個人の電話番号・住所・氏名は、noindex付きの特商法ページ以外に書かない(AGENTS.md)。
+cd "$(git rev-parse --show-toplevel)" || exit 1
+bad=$(git diff --cached -U0 --diff-filter=AM -- '*.md' '*.js' '*.json' '*.yml' '*.py' ':!tools/build.py' | grep -E '^\+[^+]' | grep -E '0[0-9]{1,4}-[0-9]{1,4}-[0-9]{3,4}')
+if [ -n "$bad" ]; then echo "commitを止めました: 電話番号の形を足しています(md/js/json等には書かない)。"; echo "$bad" | head -3; exit 1; fi
+python3 tools/build.py --check || { echo "commitを止めました: 上の問題を直してください。"; exit 1; }

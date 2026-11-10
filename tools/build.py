@@ -99,6 +99,15 @@ def main():
     missing = untracked_pages()
     if missing:
         raise SystemExit("PAGES に未登録のページがあります: " + ", ".join(missing))
+    # 電話番号・メールアドレス以外の個人連絡先(電話番号の形)を載せるページは、検索に出さない設定(noindex)が必須。
+    # (AGENTS.md「検索からの保護」。support@sawzan.com のような会社の窓口は対象外)
+    phone = re.compile(r"0\d{1,4}-\d{1,4}-\d{3,4}")
+    unprotected = [
+        rel for rel, (old, new) in results.items()
+        if phone.search(new) and not re.search(r'<meta name="robots" content="[^"]*noindex', new)
+    ]
+    if unprotected:
+        raise SystemExit("電話番号の形を含むのに noindex が無いページ: " + ", ".join(unprotected))
     stale = [rel for rel, (old, new) in results.items() if old != new]
     if check:
         if stale:

@@ -95,3 +95,7 @@ HQ(`app-company-hq`)の `company/tokushoho_handoff_2026-10-03.md` を読むこ�
 - 新しいページを足す時は、`PAGES` に追加し、マーカーを置く。
 - 共通スタイルは `assets/site.css`(色・文字・ヘッダー/フッター・文書ページ `<body class="doc">`)。ページ固有のスタイルだけを各ページの `<style>` に書く。トップの山の色(`--ridge-*` 等)は `index.html` に残している。
 - 文書ページ(`koukoku/`、`apps/enishiru/*`)も、共通ヘッダー/フッターを使う(`tools/build.py` の `PAGES`)。
+
+## gitフックとClaude Codeのフック(2026-11-10)
+- `tools/install-hooks.sh` で、commit前・push前の検査(`tools/git-hooks/`)を入れる(clone直後、またはCodex側の作業場所で1回だけ)。commit前: md/js/json等に電話番号の形を足していないか。push前: `tools/build.py --check`(共通部品が最新か、電話番号の形を含むページにnoindexがあるか)。
+- `.claude/hooks/ask-before-push.sh`: Claude Codeがpushする前に、必ず利用者の確認を求める(公開は「公開して」と言われてから)。
